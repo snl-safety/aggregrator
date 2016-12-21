@@ -1,4 +1,4 @@
-package com.snl.safety.common.entity;
+package com.aggregator.entity;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -24,6 +25,17 @@ public class User {
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;
+	
+	@OneToMany(mappedBy="user")
+	private List<Blog> blogs;
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
+	}
 
 	public List<Role> getRoles() {
 		return roles;
